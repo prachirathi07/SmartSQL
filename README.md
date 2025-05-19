@@ -1,73 +1,89 @@
 # SmartSQL
 
-Natural language interface for SQL databases.
+SmartSQL is a modern, minimal, and production-ready Natural Language to SQL system. It enables users to query structured databases using plain English, powered by LLMs and semantic search.
 
-## Overview
-
-SmartSQL is a Streamlit application that allows users to query a SQLite database using natural language. The application translates English questions into SQL queries, executes them, and presents the results in a user-friendly format.
+---
 
 ## Features
+- **Natural Language Interface:** Query your database using plain English.
+- **LLM-Driven Text-to-SQL:** Uses large language models (LLMs) to generate SQL from user queries.
+- **Semantic Search with FAISS:** Finds relevant schema context for more accurate SQL generation.
+- **Schema Awareness & Query Correction:** Dynamically analyzes schema and corrects queries based on feedback.
+- **Conversational Query Engine:** Supports follow-up questions and query refinement.
+- **Modern UI:** Minimal, responsive, and accessible React frontend.
+- **Downloadable Results:** Export query results as CSV.
+- **Query History:** View and re-run previous queries in your session.
 
-- Natural language to SQL translation
-- Interactive web interface
-- Database schema visualization
-- Query performance tracking
-- Support for multiple LLM models via Groq API
-- Advanced settings for customization
+---
 
-## Requirements
+## Tech Stack
+- **Frontend:** React (TypeScript), Material-UI
+- **Backend:** Flask (Python), LangChain, SQLAlchemy
+- **AI/NLP:** Groq LLM, LangChain, FAISS
+- **Database:** SQLite (default), pluggable for PostgreSQL/MySQL
 
-- Python 3.8+
-- Streamlit
-- LangChain
-- Groq API key
-- SQLite3
-- Additional dependencies listed in `requirements.txt`
+---
 
-## Setup
+## Quick Start
 
-1. Install the required packages:
-   ```
-   pip install -r requirements.txt
-   ```
+### 1. Backend Setup
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
+cp .env.example .env  # Add your Groq API key
+python app.py
+```
 
-2. Generate the sample database:
-   ```
-   python sqlite.py
-   ```
+### 2. Frontend Setup
+```bash
+cd frontend
+npm install
+npm start
+```
 
-3. Run the application:
-   ```
-   streamlit run app.py
-   ```
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- Backend: [http://localhost:5000](http://localhost:5000)
 
-4. Enter your Groq API key in the sidebar configuration panel.
-
-## Usage
-
-1. View the database schema in the expanded section to understand the available tables and columns.
-2. Type your question in natural language in the chat input.
-3. The application will convert your question to SQL, execute it, and display the results.
-4. Track query performance metrics in the expandable section at the bottom.
+---
 
 ## Example Queries
+- List all students in section B
+- Show average marks for the CS class
+- Which teachers teach Algorithms?
+- Show names and marks for Algorithms course
+- List teachers in Computer Science department
 
-- "List students in section B"
-- "What courses are taught by teacher ID 3?"
-- "Show names and marks for students in the 'Algorithms' course"
-- "Find the average marks for the 'CS' class"
+---
 
 ## Project Structure
+```
+SmartSQL/
+├── backend/
+│   ├── app.py
+│   ├── requirements.txt
+│   ├── semantic_search.py
+│   └── ...
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── ...
+└── README.md
+```
 
-- `app.py`: Main Streamlit application
-- `sqlite.py`: Script to generate the sample student database
-- `student.db`: SQLite database containing educational data
+---
 
 ## Configuration
+- **API Keys:** Set your Groq API key in `backend/.env`.
+- **Database:** Default is SQLite (`student.db`). You can configure PostgreSQL/MySQL in the `.env` file.
 
-The sidebar provides several configuration options:
-- Model selection
-- API key input
-- Advanced settings toggle
-- Example queries
-- Conversation management
+---
+
+## Contributing
+Pull requests and issues are welcome. Please open an issue to discuss your ideas or report bugs.
+
+---
+
+## License
+MIT License
